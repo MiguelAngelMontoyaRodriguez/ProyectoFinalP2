@@ -1,6 +1,7 @@
 module org.bugkiller.proyectofinalp2 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires jdk.xml.dom;
 
 
     opens org.bugkiller.proyectofinalp2 to javafx.fxml;
