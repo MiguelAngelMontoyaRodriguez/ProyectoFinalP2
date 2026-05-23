@@ -1,17 +1,16 @@
 package org.bugkiller.proyectofinalp2;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public  class VistaRegistro extends Application {
+public  class VistaRegistro {
 
-    @Override
-    public void start(Stage escenario){
+    public Parent crearVista() {
 
         //TITULO
         Label titulo = new Label("Registro de Usuario");
@@ -92,9 +91,13 @@ public  class VistaRegistro extends Application {
                 //ABRIR DASHBOARD
                 Dashboard dashboard = new Dashboard();
 
-                Stage nuevaventana = new Stage();
+                Scene nuevaEscena = new Scene(dashboard.crearVista(), 1400, 800);
 
-                dashboard.start(nuevaventana);
+                nuevaEscena.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
+
+                Stage escenario = (Stage) botonRegistrar.getScene().getWindow();
+
+                escenario.setScene(nuevaEscena);
 
                 //CERRAR VENTANA REGISTRO
                 escenario.close();
@@ -117,20 +120,8 @@ public  class VistaRegistro extends Application {
 
         root.setAlignment(Pos.CENTER);
 
-        //ESCENA
-        Scene escena = new Scene(root, 450, 500);
+       return root;
 
-        escenario.setTitle("Registro");
-
-        escenario.setScene(escena);
-
-        escenario.show();
-
-    }
-
-    public static void main(String[] args) {
-
-        launch(args);
     }
 
 }

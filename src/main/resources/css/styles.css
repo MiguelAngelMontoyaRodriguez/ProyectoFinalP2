@@ -1,0 +1,45 @@
+.root{
+    -fx-background-color:#f4f6f9;
+    -fx-font-family:"Segoe UI";
+}
+
+.button{
+    -fx-background-color:#2563eb;
+    -fx-text-fill:white;
+    -fx-background-radius:10;
+    -fx-padding:10 18;
+    -fx-cursor:hand;
+}
+
+.button:hover{
+    -fx-background-color:#1d4ed8;
+}
+
+.text-field,
+.combo-box,
+.spinner,
+.password-field{
+    -fx-background-radius:10;
+    -fx-border-radius:10;
+    -fx-padding:10;
+}
+
+.card{
+    -fx-background-color:white;
+    -fx-background-radius:15;
+    -fx-padding:20;
+
+    -fx-effect:dropshadow(
+            gaussian,
+            rgba(0,0,0,0.10),
+            10,
+            0,
+            0,
+            4
+    );
+}
+
+.table-view{
+    -fx-background-radius:15;
+    -fx-border-radius:15;
+}

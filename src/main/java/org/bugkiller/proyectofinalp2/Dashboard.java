@@ -1,32 +1,22 @@
 package org.bugkiller.proyectofinalp2;
 
-import javafx.application.Application;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import org.w3c.dom.css.CSSStyleRule;
+import javafx.scene.layout.*;
 
-public class Dashboard  extends Application {
+public class Dashboard {
 
     //LISTA OBSERVABLE PARA GUARDAR USUARIOS
     public static ObservableList<UsuarioPrueba> listaUsuarios = FXCollections.observableArrayList();
 
-    //Método de arranque
-    @Override
-    public void start(Stage escenario) {
+    public Parent crearVista() {
 
         //Titulo superior
-        Label titulo = new Label("SmartEvent");
+        Label titulo = new Label("BugKiller");
 
         titulo.setStyle("-fx-font-size: 24px;" + "-fx-font-weight: bold;" + "-fx-text-fill: white");
 
@@ -50,6 +40,9 @@ public class Dashboard  extends Application {
 
         Button botonConfiguracion = new Button("Configuración");
 
+        String estiloBotones = "-fx-background-color: #475569;" + "-fx-text-fill: white;" +
+                "-fx-font-size: 14px;" + "-fx-background-radius: 8;" + "-fx-cursor: hand;";
+
         //Ocupar ancho
         botonUsuarios.setMaxWidth(Double.MAX_VALUE);
 
@@ -60,6 +53,18 @@ public class Dashboard  extends Application {
         botonPagos.setMaxWidth(Double.MAX_VALUE);
 
         botonConfiguracion.setMaxWidth(Double.MAX_VALUE);
+
+        botonUsuarios.setStyle(estiloBotones);
+        botonEventos.setStyle(estiloBotones);
+        botonCompras.setStyle(estiloBotones);
+        botonPagos.setStyle(estiloBotones);
+        botonConfiguracion.setStyle(estiloBotones);
+
+        botonUsuarios.setPrefHeight(40);
+        botonEventos.setPrefHeight(40);
+        botonCompras.setPrefHeight(40);
+        botonPagos.setPrefHeight(40);
+        botonConfiguracion.setPrefHeight(40);
 
         //Vertical
         VBox menuLateral = new VBox();
@@ -98,13 +103,67 @@ public class Dashboard  extends Application {
 
         contenedorTarjetas.setSpacing(20);
 
-        //VISTA USUARIO
-        VistaUsuario vistaUsuario = new VistaUsuario();
+        contenedorTarjetas.setAlignment(Pos.CENTER_LEFT);
 
         //Contenido central
         VBox contenidoCentral = new VBox();
 
-        contenidoCentral.getChildren().addAll(subtitulo, contenedorTarjetas, vistaUsuario.crearVista());
+        StackPane contenedorVista = new StackPane();
+        
+        contenedorVista.setPrefWidth(Double.MAX_VALUE);
+
+        VBox.setVgrow(contenedorVista, Priority.ALWAYS);
+
+        //VISTA INICIAL DASHBOARD
+        VBox vistaInicio = new VBox();
+
+        vistaInicio.getChildren().addAll(subtitulo, contenedorTarjetas);
+
+        vistaInicio.setSpacing(25);
+
+        //MOSTRAR INICIO
+        contenedorVista.getChildren().setAll(vistaInicio);
+
+        botonUsuarios.setOnAction(e -> {
+
+            VistaUsuario vista = new VistaUsuario();
+
+            contenedorVista.getChildren().setAll(vista.crearVista());
+
+        });
+
+        botonEventos.setOnAction(e -> {
+
+            VistaEventos vista = new VistaEventos();
+
+            contenedorVista.getChildren().setAll(vista.crearVista());
+
+        });
+
+        botonCompras.setOnAction(e -> {
+
+            VistaCompra vista = new VistaCompra();
+
+            contenedorVista.getChildren().setAll(vista.crearVista());
+
+        });
+
+        botonPagos.setOnAction(e -> {
+
+            VistaPago vista = new VistaPago();
+
+            contenedorVista.getChildren().setAll(vista.crearVista());
+
+        });
+
+        botonConfiguracion.setOnAction(e -> {
+
+            contenedorVista.getChildren().setAll(vistaInicio);
+
+        });
+
+
+        contenidoCentral.getChildren().addAll(contenedorVista);
 
         contenidoCentral.setSpacing(25);
 
@@ -119,17 +178,18 @@ public class Dashboard  extends Application {
 
         root.setLeft(menuLateral);
 
-        root.setCenter(contenidoCentral);
+        ScrollPane scroll = new ScrollPane(contenidoCentral);
 
-        //Interfaz grafica
-        Scene escena = new Scene(root, 1200, 700);
+        scroll.setFitToWidth(true);
 
-        escenario.setTitle("Dashboard del Sistema");
+        scroll.setStyle("-fx-background: #F1F5F9;");
 
-        escenario.setScene(escena);
+        root.setCenter(scroll);
 
-        //Mostrar ventana
-        escenario.show();
+        BorderPane.setMargin(scroll, new Insets(0));
+
+        return root;
+
     }
         //MÉTODOS
 
@@ -160,12 +220,4 @@ public class Dashboard  extends Application {
             return tarjeta;
 
         }
-
-        public static void main(String[] args){
-
-            //Ejecutamos JavaFX
-            launch(args);
-
-        }
-
 }

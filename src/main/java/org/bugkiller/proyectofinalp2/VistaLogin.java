@@ -1,17 +1,16 @@
 package org.bugkiller.proyectofinalp2;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class VistaLogin extends Application {
+public class VistaLogin {
 
-    @Override
-    public void start(Stage escenario){
+    public Parent crearVista(){
 
         //TITULO
         Label titulo = new Label("SmartEvent");
@@ -54,12 +53,11 @@ public class VistaLogin extends Application {
                 //ABRIR VENTANA DE REGISTRO
                 VistaRegistro vistaRegistro = new VistaRegistro();
 
-                Stage ventanaRegistro = new Stage();
+                Scene escenaRegistro = new Scene(vistaRegistro.crearVista(), 500, 500);
 
-                vistaRegistro.start(ventanaRegistro);
+                escenaRegistro.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
 
-                //CERRAR LOGIN
-                escenario.close();
+                Stage escenario = (Stage) botonRegistro.getScene().getWindow();
 
             }catch (Exception excepcion){
 
@@ -99,12 +97,13 @@ public class VistaLogin extends Application {
                 //ABRIR DASHBOARD
                 Dashboard dashboard = new Dashboard();
 
-                Stage nuevaVentana = new Stage();
+                Scene nuevaEscena = new Scene(dashboard.crearVista(), 1250, 700);
 
-                dashboard.start(nuevaVentana);
+                nuevaEscena.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
 
-                //CERRAR LOGIN
-                escenario.close();
+                Stage escenario = (Stage) botonIngresar.getScene().getWindow();
+
+                escenario.setScene(nuevaEscena);
 
             }catch (Exception excepcion) {
 
@@ -126,23 +125,7 @@ public class VistaLogin extends Application {
 
         root.setStyle("-fx-background-color: #0F172A;");
 
-        //ESCENA
-        Scene escena = new Scene(root, 500, 500);
-
-        escenario.setTitle("Login SmartEvent");
-
-        escenario.setScene(escena);
-
-        escenario.show();
+        return root;
 
     }
-
-    public static void main(String[] args) {
-
-        launch(args);
-    }
-
-
-
-
 }
