@@ -2,16 +2,15 @@ package org.bugkiller.proyectofinalp2;
 
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 public class VistaEventos {
 
@@ -74,6 +73,21 @@ public class VistaEventos {
         Label lblPrecio = new Label("Precio: " + precio);
 
         Button botonDetalles = new Button("Ver Detalles");
+
+        botonDetalles.setOnAction(e -> {
+
+            VistaDetalleEvento vistaDetalle = new VistaDetalleEvento();
+
+            Scene escena = new Scene(vistaDetalle.crearVista(), 1200, 700);
+
+            escena.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
+
+            Stage escenario = (Stage) botonDetalles.getScene().getWindow();
+
+            escenario.setScene(escena);
+            
+        });
+
         Button botonComprar = new Button("Comprar");
 
         HBox botones = new HBox(10, botonDetalles, botonComprar);

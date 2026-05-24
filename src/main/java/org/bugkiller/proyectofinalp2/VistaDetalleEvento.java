@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class VistaDetalleEvento {
 
@@ -46,6 +49,53 @@ public class VistaDetalleEvento {
 
         Label precio = new Label("Precio: $250.000");
 
+        GridPane mapa = new GridPane();
+        mapa.setAlignment(Pos.CENTER);
+        mapa.setHgap(10);
+        mapa.setVgap(10);
+        mapa.setPadding(new Insets(20));
+        mapa.setStyle("-fx-background-color: white;" + "-fx-border-color: #CBD5E1;" + "-fx-border-radius: 10;" +
+                "-fx-background-radius: 10;");
+
+        //--------------------------------------CREAR ASIENTOS----------------------------------------
+
+        //ASIENTOS VIP
+        for (int i = 1; i <= 6; i++){
+
+            Button asiento = new Button("V" + i);
+
+            asiento.setStyle("-fx-background-color: orange;" + "-fx-text-fill: white;");
+
+            asiento.setPrefSize(50, 50);
+
+            mapa.add(asiento, i, 0);
+        }
+
+        //ASIENTOS PREFERENCIAL
+        for (int i = 1; i <= 6; i++){
+
+            Button asiento = new Button("P" + i);
+
+            asiento.setStyle("-fx-background-color: deeppink;" + "-fx-text-fill: white;");
+
+            asiento.setPrefSize(50, 50);
+
+            mapa.add(asiento, i, 1);
+        }
+
+        //ASIENTOS GENERAL
+        for (int i = 1; i <= 6; i++){
+
+            Button asiento = new Button("G" + i);
+
+            asiento.setStyle("-fx-background-color: mediumpurple;" + "-fx-text-fill: white;");
+
+            asiento.setPrefSize(50, 50);
+
+            mapa.add(asiento, i, 2);
+        }
+
+
         Label zonas = new Label("Zonas Disponibles");
 
         zonas.setStyle("-fx-font-size: 18px;" + "-fx-font-weight: bold;");
@@ -78,7 +128,8 @@ public class VistaDetalleEvento {
 
         });
 
-        root.getChildren().addAll(banner, titulo, fecha, lugar, descripcion, precio, zonas, comboZonas, botonComprar);
+        root.getChildren().addAll(banner, titulo, fecha, lugar, descripcion, precio, zonas, mapa, comboZonas,
+                botonComprar);
 
         return root;
     }

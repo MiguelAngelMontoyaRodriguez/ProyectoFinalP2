@@ -3,6 +3,7 @@ module org.bugkiller.proyectofinalp2 {
     requires javafx.fxml;
     requires jdk.xml.dom;
     requires java.sql;
+    requires java.desktop;
 
 
     opens org.bugkiller.proyectofinalp2 to javafx.fxml;
