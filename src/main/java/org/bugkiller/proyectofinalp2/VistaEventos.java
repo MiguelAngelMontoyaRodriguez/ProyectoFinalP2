@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
 public class VistaEventos {
@@ -45,6 +46,8 @@ public class VistaEventos {
 
         contenedor.getChildren().addAll(titulo, filtros, eventos);
 
+        root.setCenter(contenedor);
+
         return root;
 
     }
@@ -59,6 +62,13 @@ public class VistaEventos {
         Label lblNombre = new Label(nombre);
         lblNombre.setStyle("-fx-font-size:18px; -fx-font-weight:bold;");
 
+        Rectangle banner = new Rectangle(220, 100);
+
+        banner.setArcWidth(20);
+        banner.setArcHeight(20);
+
+        banner.setStyle("-fx-fill: #CBD5E1;");
+
         Label lblFecha = new Label("Fecha: " + fecha);
         Label lblLugar = new Label("Lugar: " + lugar);
         Label lblPrecio = new Label("Precio: " + precio);
@@ -68,7 +78,7 @@ public class VistaEventos {
 
         HBox botones = new HBox(10, botonDetalles, botonComprar);
 
-        tarjeta.getChildren().addAll(lblNombre, lblFecha, lblLugar, lblPrecio, botones);
+        tarjeta.getChildren().addAll(banner, lblNombre, lblFecha, lblLugar, lblPrecio, botones);
 
         return tarjeta;
     }

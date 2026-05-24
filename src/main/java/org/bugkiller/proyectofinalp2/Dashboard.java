@@ -38,7 +38,7 @@ public class Dashboard {
 
         Button botonPagos = new Button("Pagos");
 
-        Button botonConfiguracion = new Button("Configuración");
+        Button botonReportes = new Button("Reportes");
 
         String estiloBotones = "-fx-background-color: #475569;" + "-fx-text-fill: white;" +
                 "-fx-font-size: 14px;" + "-fx-background-radius: 8;" + "-fx-cursor: hand;";
@@ -52,25 +52,25 @@ public class Dashboard {
 
         botonPagos.setMaxWidth(Double.MAX_VALUE);
 
-        botonConfiguracion.setMaxWidth(Double.MAX_VALUE);
+        botonReportes.setMaxWidth(Double.MAX_VALUE);
 
         botonUsuarios.setStyle(estiloBotones);
         botonEventos.setStyle(estiloBotones);
         botonCompras.setStyle(estiloBotones);
         botonPagos.setStyle(estiloBotones);
-        botonConfiguracion.setStyle(estiloBotones);
+        botonReportes.setStyle(estiloBotones);
 
         botonUsuarios.setPrefHeight(40);
         botonEventos.setPrefHeight(40);
         botonCompras.setPrefHeight(40);
         botonPagos.setPrefHeight(40);
-        botonConfiguracion.setPrefHeight(40);
+        botonReportes.setPrefHeight(40);
 
         //Vertical
         VBox menuLateral = new VBox();
 
         //Agregar botones al menu
-        menuLateral.getChildren().addAll(botonUsuarios, botonEventos, botonCompras, botonPagos, botonConfiguracion);
+        menuLateral.getChildren().addAll(botonUsuarios, botonEventos, botonCompras, botonPagos, botonReportes);
 
         //Espacio entre botones
         menuLateral.setSpacing(15);
@@ -109,7 +109,7 @@ public class Dashboard {
         VBox contenidoCentral = new VBox();
 
         StackPane contenedorVista = new StackPane();
-        
+
         contenedorVista.setPrefWidth(Double.MAX_VALUE);
 
         VBox.setVgrow(contenedorVista, Priority.ALWAYS);
@@ -156,9 +156,11 @@ public class Dashboard {
 
         });
 
-        botonConfiguracion.setOnAction(e -> {
+        botonReportes.setOnAction(e -> {
 
-            contenedorVista.getChildren().setAll(vistaInicio);
+            VistaReportes vista = new VistaReportes();
+
+            contenedorVista.getChildren().setAll(vista.crearVista());
 
         });
 
