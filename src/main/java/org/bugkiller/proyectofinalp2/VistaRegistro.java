@@ -99,9 +99,6 @@ public  class VistaRegistro {
 
                 escenario.setScene(nuevaEscena);
 
-                //CERRAR VENTANA REGISTRO
-                escenario.close();
-
             }catch (Exception excepcion){
 
                 excepcion.printStackTrace();

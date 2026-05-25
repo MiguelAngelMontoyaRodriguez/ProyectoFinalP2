@@ -13,7 +13,7 @@ public class VistaLogin {
     public Parent crearVista(){
 
         //TITULO
-        Label titulo = new Label("SmartEvent");
+        Label titulo = new Label("BugKiller");
 
         titulo.setStyle("-fx-font-size: 30px;" + "-fx-font-weight: bold;" + "-fx-text-fill: white;");
 
@@ -58,6 +58,8 @@ public class VistaLogin {
                 escenaRegistro.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
 
                 Stage escenario = (Stage) botonRegistro.getScene().getWindow();
+
+                escenario.setScene(escenaRegistro);
 
             }catch (Exception excepcion){
 

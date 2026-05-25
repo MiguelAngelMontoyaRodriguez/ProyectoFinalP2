@@ -1,12 +1,9 @@
 package org.bugkiller.proyectofinalp2;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.Text;
 
 public class VistaUsuario {
 

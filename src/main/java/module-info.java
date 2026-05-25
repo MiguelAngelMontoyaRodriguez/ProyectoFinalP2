@@ -4,6 +4,7 @@ module org.bugkiller.proyectofinalp2 {
     requires jdk.xml.dom;
     requires java.sql;
     requires java.desktop;
+    requires itextpdf;
 
 
     opens org.bugkiller.proyectofinalp2 to javafx.fxml;

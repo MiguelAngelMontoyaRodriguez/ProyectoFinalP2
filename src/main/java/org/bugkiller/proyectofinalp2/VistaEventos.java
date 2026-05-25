@@ -85,7 +85,7 @@ public class VistaEventos {
             Stage escenario = (Stage) botonDetalles.getScene().getWindow();
 
             escenario.setScene(escena);
-            
+
         });
 
         Button botonComprar = new Button("Comprar");

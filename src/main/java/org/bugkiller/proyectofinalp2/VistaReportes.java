@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.chart.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -68,6 +69,18 @@ public class VistaReportes {
 
 
         root.getChildren().addAll(titulo, tarjetasReportes, grafico, graficoCircular);
+
+        Button botonPDF = new Button("Generar reporte PDF");
+
+        botonPDF.setOnAction(e -> {
+
+            GeneradorReportes generador = new GeneradorReportes();
+
+            generador.generarReporteEventos();
+
+        });
+
+        root.getChildren().add(botonPDF);
 
         return root;
 
